@@ -17,6 +17,11 @@ public class OtpActivity extends AppCompatActivity  implements PostRequestTask.O
     Button authButton;
     private  String otp , recOtp;
     Intent intent = new Intent(this, MainActivity.class);
+    LoginActivity loginActivity;
+
+    OtpActivity(LoginActivity loginActivity){
+        this.loginActivity = loginActivity;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +35,7 @@ public class OtpActivity extends AppCompatActivity  implements PostRequestTask.O
         String email = "dev.ahmettopak@gmail.com";
 
         // PostRequestTask'i başlat
-        PostRequestTask postRequestTask = new PostRequestTask(email, this);
+        PostRequestTask postRequestTask = new PostRequestTask(loginActivity.email, this);
         postRequestTask.execute(serverUrl);
         authButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,5 +54,6 @@ public class OtpActivity extends AppCompatActivity  implements PostRequestTask.O
     @Override
     public void onPostRequestCompleted(String result) {
         Log.d("TAG", "onPostRequestCompleted: " + result);
+        recOtp = result;
     }
 }

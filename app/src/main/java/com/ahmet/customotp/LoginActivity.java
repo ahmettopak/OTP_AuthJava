@@ -27,7 +27,8 @@ public class LoginActivity extends AppCompatActivity {
         registerText = findViewById(R.id.registerText);
         emailText = findViewById(R.id.emailEditText);
         passwordText = findViewById(R.id.passwordEditText);
-        Intent intent = new Intent(this, OtpActivity.class);
+        OtpActivity otpActivity = new OtpActivity(this);
+        Intent intent = new Intent(this, otpActivity.getClass());
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
