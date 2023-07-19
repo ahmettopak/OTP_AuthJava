@@ -27,17 +27,23 @@ public class LoginActivity extends AppCompatActivity {
         registerText = findViewById(R.id.registerText);
         emailText = findViewById(R.id.emailEditText);
         passwordText = findViewById(R.id.passwordEditText);
-        OtpActivity otpActivity = new OtpActivity(this);
-        Intent intent = new Intent(this, otpActivity.getClass());
+        Intent intent = new Intent(this, OtpActivity.class);
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                    //TODO email and password auth add.
                     email = String.valueOf(emailText.getText());
                     password = String.valueOf(passwordText.getText());
-                    startActivity(intent);
-                    Toast.makeText(LoginActivity.this, "Email " + email, Toast.LENGTH_SHORT).show();
+
+                    if (!email.equals("") && !password.equals("")){
+                        intent.putExtra("email", email);
+                        startActivity(intent);
+
+                    }
+                    else{
+                        Toast.makeText(LoginActivity.this, "Email veya şifre boş olamaz! ", Toast.LENGTH_SHORT).show();
+                    }
+
 
             }
         });
